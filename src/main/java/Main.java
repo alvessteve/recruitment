@@ -50,6 +50,6 @@ public class Main
         catherine.makeOrder(ticino, List.of("Pizza tonno", "Tiramisu"));
         clementine.makeOrder(etoile, List.of("Risotto", "Banana split"));
 
-        System.out.println();
+        System.out.println("done");
     }
 }
