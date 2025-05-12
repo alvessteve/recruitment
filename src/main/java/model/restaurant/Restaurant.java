@@ -63,6 +63,13 @@ public class Restaurant implements Entity
                     .orElseThrow(() -> new IllegalArgumentException(format("No meal named %s in %s", mealName, name)));
     }
 
+    public void changePriceOfMeal(String mealName, Double newPrice) {
+        this.getMealByName(mealName).changePrice(newPrice);
+    }
+
+    public List<MealPriceEvolution> getPriceEvolutionOfMeal(String mealName) {
+        return this.getMealByName(mealName).getPriceEvolutions();
+    }
 
     public enum Type
     {

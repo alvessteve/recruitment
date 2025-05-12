@@ -2,6 +2,8 @@ package model.restaurant;
 
 import org.junit.jupiter.api.Test;
 
+import static model.restaurant.RestaurantFactory.createNonVegetarianRestaurant;
+import static model.restaurant.RestaurantFactory.createVegetarianRestaurant;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -10,7 +12,7 @@ class RestaurantTest {
     @Test
     void isVegetarian_whenAllMealsVegetarian_thenTrue() {
         // Given
-        Restaurant restaurant = RestaurantFactory.createVegetarianRestaurant("The restaurant");
+        Restaurant restaurant = createVegetarianRestaurant("The restaurant");
 
         // When
         Restaurant.Type restaurantType = restaurant.getType();
@@ -22,7 +24,7 @@ class RestaurantTest {
     @Test
     void isVegetarian_whenSomeMealsNotVegetarian_thenFalse() {
         // Given
-        Restaurant restaurant = RestaurantFactory.createNonVegetarianRestaurant("The restaurant");
+        Restaurant restaurant = createNonVegetarianRestaurant("The restaurant");
 
         // When
         Restaurant.Type restaurantType = restaurant.getType();

@@ -1,9 +1,13 @@
 package model.restaurant;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import lombok.Getter;
 import model.Entity;
+
+import static java.time.LocalDate.now;
 
 public class Meal implements Entity
 {
@@ -14,7 +18,10 @@ public class Meal implements Entity
     private final String name;
 
     @Getter
-    private final Double price;
+    private Double price;
+
+    @Getter
+    private final List<MealPriceEvolution> priceEvolutions;
 
     private final Type type;
 
@@ -24,11 +31,26 @@ public class Meal implements Entity
         this.name = name;
         this.price = price;
         this.type = type;
+        this.priceEvolutions = new ArrayList<>();
     }
 
     public Boolean isVegetarian()
     {
         return type == Type.VEGETARIAN;
+    }
+
+    public void changePrice(Double newPrice) {
+        if (newPrice < 0)
+            throw new IncorrectPriceException("Price cannot be negative");
+        if (newPrice.equals(price))
+            throw new IncorrectPriceException("Price is the same as before");
+
+        addPriceEvolutionEvent(this.price, newPrice);
+        this.price = newPrice;
+    }
+
+    private void addPriceEvolutionEvent(Double oldPrice, Double newPrice) {
+        priceEvolutions.add(new MealPriceEvolution(now(), oldPrice, newPrice));
     }
 
     @Override
