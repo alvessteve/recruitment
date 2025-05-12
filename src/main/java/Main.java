@@ -1,5 +1,6 @@
 import java.util.List;
 
+import model.command.OrderCommand;
 import model.restaurant.Meal;
 import model.restaurant.Restaurant;
 import model.user.Customer;
@@ -48,8 +49,15 @@ public class Main
         // *** ORDERS ***
         // **************
 
-        catherine.makeOrder(ticino, List.of("Pizza tonno", "Tiramisu"));
-        clementine.makeOrder(etoile, List.of("Risotto", "Banana split"));
+        catherine.makeOrder(new OrderCommand(ticino, List.of("Pizza tonno", "Tiramisu")));
+        clementine.makeOrder(new OrderCommand(etoile, List.of("Risotto", "Banana split")));
+
+        List<OrderCommand> ordersCommand = List.of(
+                new OrderCommand(ticino, List.of("Pasta bolognese")),
+                new OrderCommand(etoile, List.of("Risotto", "Cassoulet")),
+                new OrderCommand(texan, List.of("Burger vege", "Fajitas"))
+        );
+        catherine.makeOrders(ordersCommand);
 
         System.out.println("done");
     }

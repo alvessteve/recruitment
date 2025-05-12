@@ -1,6 +1,7 @@
 package model.user;
 
 import lombok.Getter;
+import model.command.OrderCommand;
 import model.restaurant.Restaurant;
 
 import java.util.ArrayList;
@@ -28,9 +29,15 @@ public class Customer implements User
         this.orders = new ArrayList<>();
     }
 
-    public void makeOrder(Restaurant restaurant, List<String> meals)
+    public void makeOrder(OrderCommand orderCommand)
     {
-        orders.add(new Order(restaurant, this, meals));
+        orders.add(new Order(orderCommand.restaurant(), this, orderCommand.meals()));
+    }
+
+    public void makeOrders(List<OrderCommand> orderCommands) {
+        orderCommands.stream()
+                .map(orderCommand -> new Order(orderCommand.restaurant(), this, orderCommand.meals()))
+                .forEach(orders::add);
     }
 
     public List<Restaurant> findRestaurantsOfType(List<Restaurant> restaurants, Restaurant.Type type)
