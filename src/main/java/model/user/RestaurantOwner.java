@@ -2,6 +2,7 @@ package model.user;
 
 
 import lombok.Getter;
+import model.restaurant.Meal;
 import model.restaurant.Restaurant;
 
 public class RestaurantOwner implements User
@@ -22,8 +23,8 @@ public class RestaurantOwner implements User
         this.restaurant = restaurant;
     }
 
-    public void addMeal(String mealName, Double price)
+    public void addMeal(String mealName, Double price, Meal.Type mealType)
     {
-        restaurant.addMeal(mealName, price);
+        restaurant.addMeal(mealName, price, mealType);
     }
 }

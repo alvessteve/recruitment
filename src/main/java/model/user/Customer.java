@@ -1,10 +1,10 @@
 package model.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import model.restaurant.Restaurant;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer implements User
 {
@@ -31,6 +31,13 @@ public class Customer implements User
     public void makeOrder(Restaurant restaurant, List<String> meals)
     {
         orders.add(new Order(restaurant, this, meals));
+    }
+
+    public List<Restaurant> findRestaurantsOfType(List<Restaurant> restaurants, Restaurant.Type type)
+    {
+        return restaurants.stream()
+                .filter(restaurant -> restaurant.getType() == type)
+                .toList();
     }
 
     public enum Type {

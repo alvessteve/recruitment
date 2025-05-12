@@ -16,11 +16,19 @@ public class Meal implements Entity
     @Getter
     private final Double price;
 
-    Meal(Restaurant restaurant, String name, Double price)
+    private final Type type;
+
+    Meal(Restaurant restaurant, String name, Double price, Type type)
     {
         this.restaurant = restaurant;
         this.name = name;
         this.price = price;
+        this.type = type;
+    }
+
+    public Boolean isVegetarian()
+    {
+        return type == Type.VEGETARIAN;
     }
 
     @Override
@@ -38,5 +46,10 @@ public class Meal implements Entity
     public int hashCode()
     {
         return Objects.hash(name);
+    }
+
+    public enum Type {
+        VEGETARIAN,
+        OTHER
     }
 }

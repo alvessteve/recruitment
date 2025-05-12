@@ -1,5 +1,6 @@
 import java.util.List;
 
+import model.restaurant.Meal;
 import model.restaurant.Restaurant;
 import model.user.Customer;
 import model.user.RestaurantOwner;
@@ -32,16 +33,16 @@ public class Main
         // *** MEALS ***
         // *************
 
-        robertDupont.addMeal("Pizza tonno", 20.50);
-        robertDupont.addMeal("Pasta bolognese", 18.30);
-        robertDupont.addMeal("Tiramisu", 12.80);
+        robertDupont.addMeal("Pizza tonno", 20.50, Meal.Type.OTHER);
+        robertDupont.addMeal("Pasta bolognese", 18.30, Meal.Type.OTHER);
+        robertDupont.addMeal("Tiramisu", 12.80, Meal.Type.VEGETARIAN);
 
-        magaliNoel.addMeal("Cassoulet", 22.60);
-        magaliNoel.addMeal("Risotto", 19.15);
-        magaliNoel.addMeal("Banana split", 14.90);
+        magaliNoel.addMeal("Cassoulet", 22.60, Meal.Type.OTHER);
+        magaliNoel.addMeal("Risotto", 19.15, Meal.Type.VEGETARIAN);
+        magaliNoel.addMeal("Banana split", 14.90, Meal.Type.VEGETARIAN);
 
-        nicolasBenoit.addMeal("Burger vege", 21.10);
-        nicolasBenoit.addMeal("Fajitas", 24.0);
+        nicolasBenoit.addMeal("Burger vege", 21.10, Meal.Type.VEGETARIAN);
+        nicolasBenoit.addMeal("Fajitas", 24.0, Meal.Type.OTHER);
 
         // **************
         // *** ORDERS ***
