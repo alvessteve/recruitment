@@ -9,8 +9,8 @@ import java.util.List;
 
 import static assertions.CustomerAssert.assertThat;
 import static assertions.RestaurantAssert.assertThat;
-import static model.restaurant.RestaurantFactory.createNonVegetarianRestaurant;
-import static model.restaurant.RestaurantFactory.createVegetarianRestaurant;
+import static model.restaurant.RestaurantFactory.createNonVegetarianRestaurantWith2Meals;
+import static model.restaurant.RestaurantFactory.createVegetarianRestaurantWith2Meals;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CustomerTest {
@@ -25,8 +25,8 @@ class CustomerTest {
     @Test
     void findRestaurants_OfTypeVegetarian_ifOne_thenReturnIt() {
         //Given
-        Restaurant vegetarianRestaurant = createVegetarianRestaurant("The restaurant");
-        Restaurant nonVegetarianRestaurant = createNonVegetarianRestaurant("The restaurant 2");
+        Restaurant vegetarianRestaurant = createVegetarianRestaurantWith2Meals("The restaurant");
+        Restaurant nonVegetarianRestaurant = createNonVegetarianRestaurantWith2Meals("The restaurant 2");
 
         //When
         List<Restaurant> vegetarianRestaurants = customer.findRestaurantsOfType(List.of(vegetarianRestaurant, nonVegetarianRestaurant), Restaurant.Type.VEGETARIAN);
@@ -38,8 +38,8 @@ class CustomerTest {
     @Test
     void findRestaurants_OfTypeVegetarian_ifNone_thenReturnNone() {
         //Given
-        Restaurant nonVegetarianRestaurant = createNonVegetarianRestaurant("The Big Fernand");
-        Restaurant anotherNonVegetarianRestaurant = createNonVegetarianRestaurant("The restaurant");
+        Restaurant nonVegetarianRestaurant = createNonVegetarianRestaurantWith2Meals("The Big Fernand");
+        Restaurant anotherNonVegetarianRestaurant = createNonVegetarianRestaurantWith2Meals("The restaurant");
 
         //When
         List<Restaurant> vegetarianRestaurants = customer.findRestaurantsOfType(List.of(anotherNonVegetarianRestaurant, nonVegetarianRestaurant), Restaurant.Type.VEGETARIAN);
@@ -51,8 +51,8 @@ class CustomerTest {
     @Test
     void makeOrders_withCommands_ThenMakeOrders() {
         // Given
-        Restaurant vegetarianRestaurant = createVegetarianRestaurant("The restaurant");
-        Restaurant meatRestaurant = createNonVegetarianRestaurant("Au bovin");
+        Restaurant vegetarianRestaurant = createVegetarianRestaurantWith2Meals("The restaurant");
+        Restaurant meatRestaurant = createNonVegetarianRestaurantWith2Meals("Au bovin");
 
         OrderCommand orderCommandForVegetarianRestaurant = new OrderCommand(vegetarianRestaurant,
                 List.of(vegetarianRestaurant.getMeals().get(0).getName(), vegetarianRestaurant.getMeals().get(1).getName()));
@@ -75,7 +75,7 @@ class CustomerTest {
     @Test
     void makeOrder_withRestaurantAndMeals_ThenMakeOrder() {
         // Given
-        Restaurant vegetarianRestaurant = createVegetarianRestaurant("The restaurant");
+        Restaurant vegetarianRestaurant = createVegetarianRestaurantWith2Meals("The restaurant");
         List<String> meals = List.of(vegetarianRestaurant.getMeals().get(0).getName(), vegetarianRestaurant.getMeals().get(1).getName());
 
         // When

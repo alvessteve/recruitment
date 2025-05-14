@@ -17,15 +17,16 @@ class RestaurantOwnerTest {
     private RestaurantOwner owner;
     private Restaurant restaurant;
     private String mealName;
+    private double mealPrice;
 
     @BeforeEach
     void setUp() {
         // Given
-
+        mealPrice = 10.0;
         mealName = "Pasta";
         restaurant = new Restaurant("Test Restaurant");
         owner = new RestaurantOwner("John", "Doe", restaurant);
-        owner.addMeal(mealName, 10.0, Meal.Type.OTHER);
+        owner.addMeal(mealName, mealPrice, Meal.Type.OTHER);
     }
 
     @Test
@@ -65,7 +66,7 @@ class RestaurantOwnerTest {
     @Test
     void changeMealPrice_whenSameAmount_thenNoChange() {
         // When
-        double samePrice = 10.0;
+        double samePrice = mealPrice;
 
         // Then
         assertThatThrownBy(() -> owner.changeMealPrice(mealName, samePrice))
@@ -84,7 +85,7 @@ class RestaurantOwnerTest {
 
         // Then
         assertThat(priceEvolutionOfMeal.size()).isEqualTo(1);
-        assertThat(priceEvolutionOfMeal.get(0).oldPrice()).isEqualTo(10.0);
-        assertThat(priceEvolutionOfMeal.get(0).newPrice()).isEqualTo(12.0);
+        assertThat(priceEvolutionOfMeal.get(0).oldPrice()).isEqualTo(mealPrice);
+        assertThat(priceEvolutionOfMeal.get(0).newPrice()).isEqualTo(newPrice);
     }
 }
